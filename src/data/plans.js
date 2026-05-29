@@ -83,74 +83,89 @@ export const run20Plan = [
 // + Skratch pre-run (20g carbs) bridges the early gap
 // Total: ~165g carbs from fuel + Skratch. Adequate with UCAN slow-release sustaining.
 
-// ─── MARATHON RACE PLAN ────────────────────────────────────────────────────────
-// Target: 60g/hr over 4:30. Anderson's primary, 1 UCAN caffeine at km 29.
-// Station notes from Grandmas course (water + Powerade every 2 mi, every 1 mi after mile 19).
+// ─── MARATHON RACE PLAN (NEGATIVE SPLIT) ────────────────────────────────────
+// Strategy: 3 zones. Zone 1 (km 0-14): 6:32-6:35/km patience.
+// Zone 2 (km 14-28): 6:23-6:25/km goal pace settle.
+// Zone 3 (km 28-42.2): 6:10-6:15/km deliberate push.
+// Half split target: ~2:17. Finish target: ~4:28.
+// Course net downhill assists Zone 3. UCAN caffeine at km 29 timed for Lemon Drop Hill (km 35).
 export const marathonPlan = [
   {
-    km:0, time:"+0:00", phase:"early", label:"Start — Hold Back",
+    km:0, time:"+0:00", phase:"early", label:"Zone 1 Begins — Patience",
     fuel:null,
-    detail:"6:30/km for the first 5km no matter what. Adrenaline will tell you to go faster. Ignore it. The runners passing you now will be behind you at km 35.",
+    detail:"6:32-6:35/km. This feels embarrassingly slow and that is exactly correct. Every runner passing you in the first 5km is making a mistake you are choosing not to make. The downhill tempts you to bank time early. Resist.",
     station:null,
   },
   {
-    km:5, time:"+0:33", phase:"early", label:"Anderson's #1 🍁",
+    km:5, time:"+0:33", phase:"early", label:"Anderson's #1 — Stay Patient",
     fuel:"anderson", carbs:27,
-    detail:"Mile 3 aid station. Anderson's packet + water. Settle to 6:25/km. Shoulders down. Cadence comfortable. This is where you establish rhythm for 37km.",
+    detail:"Mile 3 aid station. Anderson's + water. Still 6:32-6:35/km. Check your watch — if you are faster than 6:30 back off deliberately. You are not racing yet. This is investment.",
     station:"Aid Station: Mile 3",
   },
   {
-    km:10, time:"+1:05", phase:"early", label:"Anderson's #2 🍁",
+    km:10, time:"+1:06", phase:"early", label:"Anderson's #2 — Build Awareness",
     fuel:"anderson", carbs:27,
-    detail:"Mile 7 aid station. Anderson's + water. Do NOT take Powerade yet — gel sugars plus sports drink simultaneously can cause GI issues. Water only until km 17.",
+    detail:"Mile 7 station. Anderson's + water only. How do you feel? Easy, controlled, slightly bored — that is the target sensation at km 10. If you feel like you are racing, you are going too fast.",
     station:"Aid Station: Mile 7",
   },
   {
-    km:13, time:"+1:23", phase:"middle", label:"Half Check — Honest Split",
+    km:13, time:"+1:25", phase:"early", label:"Half Split Check",
     fuel:null,
-    detail:"Ideal half split is ~2:15. If you are faster, ease back slightly. The second half is where marathons are won or lost. No heroics here.",
+    detail:"Project your half split — you want to cross 21.1km around 2:17. If you are on pace for faster than that, back off now. The back half is where this race gets run.",
     station:"Aid Station: Mile 9",
   },
   {
-    km:17, time:"+1:49", phase:"middle", label:"Anderson's #3 🍁 + Powerade Starts",
+    km:17, time:"+1:51", phase:"middle", label:"Anderson's #3 — Zone 2 Begins",
     fuel:"anderson", carbs:27,
-    detail:"Mile 11. Anderson's + water. From here begin alternating Powerade with water at stations — sodium replenishment is now critical. Also the Pure Fuel station at Mile 17 will have Anderson's on-course.",
+    detail:"Zone 2 starts here. Ease to 6:23-6:25/km — a controlled release, not a surge. Anderson's + water. Start alternating Powerade at stations from here on.",
     station:"Aid Station: Mile 11",
   },
   {
-    km:21, time:"+2:14", phase:"middle", label:"Anderson's #4 🍁",
-    fuel:"anderson", carbs:27,
-    detail:"Mile 13. Anderson's + Powerade. You feel like you are almost done. You are not. 21km remaining. Maintain 6:23/km and stay disciplined.",
+    km:21, time:"+2:17", phase:"middle", label:"Half — On Plan",
+    fuel:null,
+    detail:"Half at ~2:17. This is exactly where you want to be. You have banked nothing — you have conserved everything. Runners who went out at 6:10/km are starting to fade. You are not.",
     station:"Aid Station: Mile 13",
   },
   {
-    km:25, time:"+2:40", phase:"late", label:"Anderson's #5 🍁 — Pure Fuel Station",
+    km:25, time:"+2:43", phase:"middle", label:"Anderson's #4 — Pure Fuel Station",
     fuel:"anderson", carbs:27,
-    detail:"Mile 17 — this is the official Anderson's Pure Fuel station on the Grandmas course. Grab one here even if you brought enough. Extra fuel is never a mistake at km 25.",
+    detail:"Mile 17 official Anderson's Pure Fuel station. Grab one here regardless of supply. Still 6:23-6:25/km. The urge to accelerate starts here — resist for 3 more km. Discipline now, speed later.",
     station:"Pure Fuel Station: Mile 17",
   },
   {
-    km:29, time:"+3:05", phase:"late", label:"UCAN Edge + Caffeine ☕",
-    fuel:"ucan", carbs:19, caffeine:75,
-    detail:"Mile 19. UCAN caffeine gel. 19g slow-release + 75mg caffeine. No water needed. Take it between stations or with water at the station — your choice. Caffeine effect peaks around km 33-35 exactly when you need it most. Fresh fruit also available here.",
+    km:28, time:"+3:01", phase:"late", label:"Anderson's #5 — Zone 3 Approaches",
+    fuel:"anderson", carbs:27,
+    detail:"Mile 19 station. Anderson's + Powerade. Fresh fruit available — grab it. Take stock: legs? Breathing? Energy? If all three feel controlled, Zone 3 is go in 1km.",
     station:"Aid Station: Mile 19 + Fresh Fruit",
   },
   {
-    km:32, time:"+3:24", phase:"final", label:"Anderson's #6 🍁 — Pre-Hill Fuel",
-    fuel:"anderson", carbs:27,
-    detail:"Miles 20-22, stations every mile. Take Anderson's #6 BEFORE Lemon Drop Hill — you need fuel in your system going into the climb, not scrambling after it. This is non-negotiable.",
+    km:29, time:"+3:08", phase:"late", label:"UCAN Caffeine — Zone 3 Begins",
+    fuel:"ucan", carbs:19, caffeine:75,
+    detail:"Zone 3. UCAN caffeine — 19g slow-release + 75mg caffeine. No water needed, take between stations. Deliberately push to 6:10-6:15/km. This is you finally racing. Caffeine peaks in ~25 min, right at Lemon Drop Hill.",
+    station:"Between stations",
+  },
+  {
+    km:32, time:"+3:22", phase:"final", label:"Pushing — Stations Every Mile",
+    fuel:null,
+    detail:"6:10-6:15/km. Stations every mile — Powerade at each one. You are running faster than your first half. Every runner you pass now went out too fast. That is your plan working.",
     station:"Aid Stations: Miles 20, 21, 22",
   },
   {
-    km:37, time:"+3:56", phase:"final", label:"SiS GO #1 🟢 — Final Push",
-    fuel:"sis", carbs:22,
-    detail:"SiS GO isotonic gel as your final fast-carb push. 22g, no water needed. Stations every mile — take Powerade at each one. You are in the pain cave. Canal Park is close. Every step is banked fitness.",
-    station:"Aid Stations: Miles 23, 24, 25",
+    km:35, time:"+3:41", phase:"final", label:"Lemon Drop Hill — UCAN Is Active",
+    fuel:null,
+    detail:"Lemon Drop Hill. UCAN caffeine is fully active right now — this was planned. The hill is not large but at km 35 everything is large. Shorten stride going up, keep turnover. Recover on the descent then re-engage pace.",
+    station:"Aid Stations: Miles 23, 24",
   },
   {
-    km:42.2, time:"+4:30", phase:"done", label:"FINISH — Grandmas Marathon",
+    km:37, time:"+3:53", phase:"final", label:"SiS GO — Final Fast Carbs",
+    fuel:"sis", carbs:22,
+    detail:"SiS GO isotonic — 22g fast carbs, no water needed. Last fuel of the race. You are 5km from the finish running faster than your first half. Take Powerade at every remaining station. Canal Park is close.",
+    station:"Aid Station: Mile 25",
+  },
+  {
+    km:42.2, time:"+4:28", phase:"done", label:"FINISH — Grandmas Marathon",
     fuel:null,
-    detail:"4:30:00. Canal Park, Duluth. Find Melissa. Eat everything. You earned all of it.",
+    detail:"4:28. Negative split executed. Canal Park, Duluth. Find Melissa. You ran the second half faster than the first over 42km. That is how you run a marathon.",
     station:null,
   },
 ];

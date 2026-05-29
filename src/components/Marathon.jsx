@@ -15,16 +15,17 @@ export default function Marathon() {
         <div style={{ position:'absolute',bottom:'2rem',left:'clamp(1.25rem,4vw,3rem)',right:'clamp(1.25rem,4vw,3rem)' }}>
           <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.7rem',color:'var(--accent)',letterSpacing:'0.22em',marginBottom:'0.5rem',textTransform:'uppercase' }}>June 21, 2026 · Two Harbors to Canal Park</div>
           <h1 style={{ fontSize:'clamp(2.5rem,7vw,4.5rem)',color:'var(--text)',marginBottom:'0.4rem' }}>RACE DAY</h1>
-          <p style={{ color:'var(--muted)',fontSize:'0.95rem',fontStyle:'italic' }}>Grandmas Marathon · 42.2 km · Goal: 4:30:00</p>
+          <p style={{ color:'var(--muted)',fontSize:'0.95rem',fontStyle:'italic' }}>Grandmas Marathon · 42.2 km · Negative Split · Target: 4:28</p>
         </div>
       </div>
 
       <div style={{ maxWidth:700,margin:'0 auto',padding:'2rem 1.25rem 5rem' }}>
         <div style={{ display:'flex',gap:'0.75rem',flexWrap:'wrap',marginBottom:'2rem' }}>
           {[
-            {val:'6:30/km',label:'Start Pace'},
-            {val:'6:23/km',label:'Race Pace'},
-            {val:'~2:15',label:'Half Split'},
+            {val:'6:32-6:35',label:'Zone 1 Pace'},
+            {val:'6:23-6:25',label:'Zone 2 Pace'},
+            {val:'6:10-6:15',label:'Zone 3 Pace'},
+            {val:'~2:17',label:'Half Split'},
             {val:`${totalCarbs}g`,label:'Total Carbs'},
             {val:String(openings),label:'Fuel Openings'},
           ].map(({val,label}) => (
@@ -33,6 +34,28 @@ export default function Marathon() {
               <div style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'1.15rem',color:'var(--accent)',letterSpacing:'0.04em' }}>{val}</div>
             </div>
           ))}
+        </div>
+
+        {/* Zone strategy */}
+        <div style={{ marginBottom:'1.5rem',padding:'1rem 1.25rem',background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:10 }}>
+          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.85rem' }}>Negative Split Strategy — 3 Zones</div>
+          <div style={{ display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))',gap:'0.6rem' }}>
+            {[
+              { zone:'Zone 1', km:'km 0–14', pace:'6:32–6:35/km', desc:'Patience. Feels too slow.', color:'#30c060' },
+              { zone:'Zone 2', km:'km 14–28', pace:'6:23–6:25/km', desc:'Goal pace. Controlled release.', color:'#c8a020' },
+              { zone:'Zone 3', km:'km 28–42', pace:'6:10–6:15/km', desc:'Racing. Deliberate push.', color:'#c03030' },
+            ].map(z => (
+              <div key={z.zone} style={{ padding:'0.75rem',background:'var(--surface)',border:`1px solid ${z.color}35`,borderTop:`2px solid ${z.color}`,borderRadius:8 }}>
+                <div style={{ display:'flex',justifyContent:'space-between',alignItems:'baseline',marginBottom:'0.2rem' }}>
+                  <span style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'1rem',color:z.color,letterSpacing:'0.06em' }}>{z.zone}</span>
+                  <span style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.62rem',color:'var(--dim)' }}>{z.km}</span>
+                </div>
+                <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.78rem',color:'var(--text)',marginBottom:'0.2rem' }}>{z.pace}</div>
+                <div style={{ color:'var(--muted)',fontSize:'0.82rem',fontStyle:'italic' }}>{z.desc}</div>
+              </div>
+            ))}
+          </div>
+          <p style={{ color:'var(--dim)',fontSize:'0.82rem',marginTop:'0.85rem',lineHeight:1.5 }}>Half split target: ~2:17. Finish target: ~4:28. The course net downhill assists Zone 3 — you are running faster late with less effort than flat. Lemon Drop Hill at km 35 is why UCAN caffeine deploys at km 29.</p>
         </div>
 
         {/* Fuel strip */}
