@@ -30,49 +30,49 @@ export const sharedPreRace = [
 // Support point at km 16 — extra gels handed off there.
 export const run20Plan = [
   {
-    km:0, time:"+0:00", phase:"early", label:"Start",
+    km:0, time:"+0:00", phase:"early", label:"Start — Heat Adjusted",
     fuel:null,
-    detail:"6:45-6:50/km. Fully conversational. This is your longest training run — conservative is always correct from step one.",
+    detail:"7:05-7:15/km today. It is already 64F and climbing to 78F by the end. Conversational effort is the rule — if you cannot hold a sentence, slow down. Heat is doing work your legs cannot see on the watch.",
   },
   {
-    km:5, time:"+0:34", phase:"early", label:"Anderson's #1 🍁",
+    km:5, time:"+0:36", phase:"early", label:"Anderson's #1 🍁",
     fuel:"anderson", carbs:27,
-    detail:"First Anderson's packet. 27g carbs. Squeeze fully and wipe hands. Water at your next opportunity. Energy stores still high — this is prevention not rescue.",
+    detail:"First Anderson's. 27g carbs. It is warm — chase with water at every opportunity, not just scheduled stops. Sweat rate is higher than a cool day so drink more than you think you need.",
   },
   {
-    km:10, time:"+1:08", phase:"middle", label:"Anderson's #2 🍁",
+    km:10, time:"+1:12", phase:"middle", label:"Anderson's #2 🍁",
     fuel:"anderson", carbs:27,
-    detail:"Second packet. Chase with water. Form check: shoulders down, cadence steady. How does your energy feel? Steady is correct.",
+    detail:"Second packet. Temperature is climbing toward 70F. Chase with water immediately. Check in: sweating heavily? Drink more. Perceived effort will be elevated — that is the heat tax, not a fitness problem.",
   },
   {
-    km:14, time:"+1:35", phase:"middle", label:"Anderson's #3 🍁",
+    km:14, time:"+1:41", phase:"middle", label:"Anderson's #3 🍁",
     fuel:"anderson", carbs:27,
-    detail:"Third packet. You are approaching territory past your recent long runs. New ground starts around km 16 — fuel now before you get there.",
+    detail:"Third packet. You are entering new territory past recent long runs. The heat makes this feel harder than the km number suggests. That is accurate — you are doing more physiological work today.",
   },
   {
-    km:16, time:"+1:49", phase:"middle", label:"Support Point — Restock",
+    km:16, time:"+1:56", phase:"middle", label:"Support Point — Restock",
     fuel:null, isSupport:true,
-    detail:"Hand-off point. Grab extra Anderson's packets and confirm UCAN caffeine is ready. Quick stop — 30 seconds max. No sitting down. Keep moving.",
+    detail:"Hand-off at km 16. Grab Anderson's packets and UCAN caffeine. Priority today: grab cold water or a sports drink from your support if available — pour some on your head and neck too. 30 seconds max. Keep moving.",
   },
   {
-    km:20, time:"+2:16", phase:"late", label:"UCAN Edge + Caffeine ☕",
+    km:20, time:"+2:23", phase:"late", label:"UCAN Edge + Caffeine ☕",
     fuel:"ucan", carbs:19, caffeine:75,
-    detail:"UCAN caffeine gel. 19g slow-release carbs + 75mg caffeine. No water needed. This is your strategic weapon — the slow-release base keeps the energy floor up for the final 12km. Caffeine effect kicks in around km 22-23.",
+    detail:"UCAN caffeine gel. 19g slow-release + 75mg caffeine. No water needed. It is now 73-75F and rising. Pace may slip to 7:20-7:30/km — that is correct and expected. Do not chase a number in this heat.",
   },
   {
-    km:24, time:"+2:43", phase:"late", label:"Anderson's #4 🍁",
+    km:24, time:"+2:52", phase:"late", label:"Anderson's #4 🍁",
     fuel:"anderson", carbs:27,
-    detail:"Fourth Anderson's. You are deep in the hurt zone — this is exactly where bonking happens to people who skip this. Fuel regardless of how you feel.",
+    detail:"Fourth packet. Temps peaking near 77F. If you need to slow to 7:30/km or beyond, do it. Finishing strong and uncooked matters more than pace today. Fuel regardless of how you feel.",
   },
   {
-    km:28, time:"+3:10", phase:"final", label:"Anderson's #5 🍁",
+    km:28, time:"+3:21", phase:"final", label:"Anderson's #5 🍁",
     fuel:"anderson", carbs:27,
-    detail:"Fifth packet. UCAN caffeine is still active. Every km past here builds race-day resilience. You will not feel good — that is expected and correct.",
+    detail:"Fifth packet. Hardest stretch of any 32km run in the heat. Shorten your stride, keep turnover up, stay upright. UCAN caffeine is still active. Every step here builds race-day heat resilience.",
   },
   {
-    km:32, time:"+3:36", phase:"done", label:"DONE — 20 miles",
+    km:32, time:"+3:50", phase:"done", label:"DONE — 20 miles in the heat",
     fuel:null,
-    detail:"32km complete. Peak training run. Rehydrate immediately. 85-103g carbs + 30-40g protein within 30 minutes. You have earned every bit of this.",
+    detail:"32km complete in 75F+ heat. That is meaningfully harder than a cool-day 20-miler — your effort today reflects fitness well beyond what the pace shows. Rehydrate immediately and aggressively. 85-103g carbs + 30-40g protein within 30 minutes.",
   },
 ];
 

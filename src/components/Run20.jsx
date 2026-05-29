@@ -11,13 +11,13 @@ const reminders = [
 ];
 
 const fuelSummary = [
-  { label:'Anderson #1', km:'km 5',  carbs:27, color:'var(--maple)' },
-  { label:'Anderson #2', km:'km 10', carbs:27, color:'var(--maple)' },
-  { label:'Anderson #3', km:'km 14', carbs:27, color:'var(--maple)' },
-  { label:'Support Stop', km:'km 16', carbs:0,  color:'var(--accent)', special:'Restock here' },
+  { label:"Anderson's #1", km:'km 5',  carbs:27, color:'var(--maple)' },
+  { label:"Anderson's #2", km:'km 10', carbs:27, color:'var(--maple)' },
+  { label:"Anderson's #3", km:'km 14', carbs:27, color:'var(--maple)' },
+  { label:'Support Stop',  km:'km 16', carbs:0,  color:'var(--accent)', special:'Restock here' },
   { label:'UCAN Caffeine', km:'km 20', carbs:19, color:'var(--ucan)', special:'+75mg caff' },
-  { label:'Anderson #4', km:'km 24', carbs:27, color:'var(--maple)' },
-  { label:'Anderson #5', km:'km 28', carbs:27, color:'var(--maple)' },
+  { label:"Anderson's #4", km:'km 24', carbs:27, color:'var(--maple)' },
+  { label:"Anderson's #5", km:'km 28', carbs:27, color:'var(--maple)' },
 ];
 
 export default function Run20() {
@@ -32,19 +32,28 @@ export default function Run20() {
         <div style={{ position:'absolute',bottom:'2rem',left:'clamp(1.25rem,4vw,3rem)',right:'clamp(1.25rem,4vw,3rem)' }}>
           <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.7rem',color:'var(--accent)',letterSpacing:'0.22em',marginBottom:'0.5rem',textTransform:'uppercase' }}>Peak Training Run · 32.2 km</div>
           <h1 style={{ fontSize:'clamp(2.5rem,7vw,4.5rem)',color:'var(--text)',marginBottom:'0.4rem' }}>20-MILE RUN</h1>
-          <p style={{ color:'var(--muted)',fontSize:'0.95rem',fontStyle:'italic' }}>7 total fuel openings · Support at km 16 · 6:45-6:50/km</p>
+          <p style={{ color:'var(--muted)',fontSize:'0.95rem',fontStyle:'italic' }}>7 total fuel openings · Support at km 16 · Heat adjusted: 7:05-7:15/km</p>
         </div>
       </div>
 
       <div style={{ maxWidth:700,margin:'0 auto',padding:'2rem 1.25rem 5rem' }}>
         {/* Stats */}
         <div style={{ display:'flex',gap:'0.75rem',flexWrap:'wrap',marginBottom:'2rem' }}>
-          {[{val:'32.2 km',label:'Distance'},{val:'6:45-6:50/km',label:'Easy Pace'},{val:'~154g',label:'Total Carbs'},{val:'7',label:'Fuel Openings'},{val:'km 16',label:'Support Point'}].map(({val,label}) => (
+          {[{val:'32.2 km',label:'Distance'},{val:'7:05-7:15/km',label:'Heat Pace'},{val:'~154g',label:'Total Carbs'},{val:'7',label:'Fuel Openings'},{val:'km 16',label:'Support Point'}].map(({val,label}) => (
             <div key={label} style={{ background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:8,padding:'0.45rem 0.85rem' }}>
               <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.62rem',color:'var(--dim)',textTransform:'uppercase',letterSpacing:'0.1em' }}>{label}</div>
               <div style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'1.15rem',color:'var(--accent)',letterSpacing:'0.04em' }}>{val}</div>
             </div>
           ))}
+        </div>
+
+        {/* Heat warning */}
+        <div style={{ marginBottom:'1.5rem',padding:'0.85rem 1.1rem',background:'rgba(192,80,24,0.12)',border:'1px solid rgba(192,80,24,0.5)',borderLeft:'3px solid var(--maple)',borderRadius:8,display:'flex',gap:'0.6rem',alignItems:'flex-start' }}>
+          <span style={{ fontSize:'1.1rem',flexShrink:0 }}>🌡️</span>
+          <div>
+            <span style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'1rem',color:'var(--maple)',letterSpacing:'0.05em' }}>HEAT ADJUSTED PLAN · </span>
+            <span style={{ color:'var(--muted)',fontSize:'0.88rem' }}>Start 64°F climbing to 77-78°F. Target 7:05-7:15/km early, allow 7:20-7:30/km in back half. Drink at every opportunity — do not ration water today.</span>
+          </div>
         </div>
 
         {/* Visual fuel strip */}
