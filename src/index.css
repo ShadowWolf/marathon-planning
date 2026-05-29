@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;700&display=swap');
 :root {
-  --black:#06060e;--surface:#0d0d1c;--surface2:#13132a;--surface3:#1a1a35;
-  --border:#252540;--border-bright:#35355a;--text:#ede8dc;--muted:#7878a0;
-  --dim:#454565;--accent:#e8a830;--accent-dim:#8a6010;
-  --green:#1a7a40;--green-bright:#30c060;--yellow:#c89010;
-  --orange:#c05018;--red:#a02828;--blue:#3060b8;
-  --maple:#c8501a;--maple-dim:#6a2808;--maple-bright:#e8701a;
-  --ucan:#1a60a8;--ucan-dim:#0a2848;--ucan-bright:#3090e8;
+  --black:#06060e; --surface:#0d0d1c; --surface2:#13132a; --surface3:#1a1a35;
+  --border:#252540; --border-bright:#35355a; --text:#ede8dc; --muted:#7878a0; --dim:#454565;
+  --accent:#e8a830; --accent-dim:#6a4010;
+  --green:#1a7a40; --green-bright:#30c060; --yellow:#c89010; --orange:#c05018; --red:#a02828; --blue:#1a5898;
+  --maple:#c8501a; --sis:#1a7a58; --ucan:#1a50a0; --skratch:#8a3898;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
