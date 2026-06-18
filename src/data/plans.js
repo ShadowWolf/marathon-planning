@@ -18,10 +18,10 @@ export const sharedPre20 = [
 
 export const sharedPreRace = [
   { time:"T-3h",     icon:"⏰", label:"Wake & Hydrate",       detail:"500ml plain water immediately. Have it on the nightstand the night before." },
-  { time:"T-2h 45m", icon:"🥣", label:"Breakfast",            detail:"Quaker Oats Protein Granola + whole milk, 1.5-2 cups (~80-100g carbs). Coffee only if that is already your daily routine." },
+  { time:"T-2h 45m", icon:"🥣", label:"Breakfast + Coffee",   detail:"Quaker Oats Protein Granola + whole milk, 1.5-2 cups (~80-100g carbs). Coffee with breakfast — required, not optional. The coffee is dose #1 of your three-dose caffeine plan (coffee + UCAN+Caff at km 17 + UCAN+Caff at km 29)." },
   { time:"T-1h 30m", icon:"💧", label:"Skratch Labs Mix",      detail:"Mix 1 Skratch Labs packet into 500ml water. Sip over 45 minutes. This is your sodium load — do not skip it." },
   { time:"T-45m",    icon:"⚡", label:"UCAN Edge Pre-Load",     detail:"One UCAN Edge packet now. 19g slow-release carbs, no water needed. Bridges breakfast to race start and extends your glycogen runway into the first hour. Not optional — take it." },
-  { time:"T-30m",    icon:"🎽", label:"Corrals",               detail:"4 UCAN Edge packets staged, UCAN Edge+Caffeine isolated in a separate pocket. Light dynamic warm-up. Get into your corral early." },
+  { time:"T-30m",    icon:"🎽", label:"Corrals",               detail:"Stage 2 UCAN Edge + 2 UCAN Edge+Caffeine + 3 SiS GO Isotonic. Both caffeine packets isolated in their own pocket and labeled — easy to confuse with plain UCAN Edge under race pressure. Light dynamic warm-up. Get into your corral early." },
   { time:"T-5m",     icon:"💧", label:"Last Sip",              detail:"One mouthful of water. You are fueled. Now run." },
 ];
 
@@ -89,8 +89,10 @@ export const run20Plan = [
 // Zone 2 (km 14-28): 6:23-6:25/km goal pace settle.
 // Zone 3 (km 28-42.2): 6:10-6:15/km deliberate push.
 // Half split target: ~2:17. Finish target: ~4:28.
-// Course net downhill assists Zone 3. UCAN+caff at km 29 timed for Lemon Drop Hill (km 35).
-// Fuel: UCAN-only. No fructose. 1 pre-race + 4 during = 5 total (95g). GI-gentle throughout.
+// Course net downhill assists Zone 3.
+// Fuel: UCAN base + SiS finish. No fructose. 1 pre-race + 7 during = 142g during race, ~32 g/hr.
+// Caffeine: split-dose. Coffee + UCAN+Caff at km 17 + UCAN+Caff at km 29 = ~230-250mg total
+// (~2.7-2.9 mg/kg for 85kg). km 29 dose peaks at Lemon Drop Hill (km 35); km 17 dose covers Zone 2.
 export const marathonPlan = [
   {
     km:0, time:"+0:00", phase:"early", label:"Zone 1 Begins — Patience",
@@ -99,10 +101,16 @@ export const marathonPlan = [
     station:null,
   },
   {
-    km:9, time:"+0:59", phase:"early", label:"UCAN Edge #1",
+    km:6, time:"+0:39", phase:"early", label:"UCAN Edge #1",
     fuel:"ucannc", carbs:19,
-    detail:"First UCAN. 19g slow-release, no fructose, no GI stress. Take it between stations — no water needed, chase with Powerade at the next station. Pre-race UCAN is still active, this extends the window. Still 6:32-6:35/km.",
-    station:"Near Aid Station: Mile 5-6",
+    detail:"First in-race UCAN. 19g slow-release, no fructose, no GI stress. Take it between stations — no water needed, chase with Powerade at Mile 3 aid station. Pre-race UCAN is still active, this stacks the runway. Still 6:32-6:35/km.",
+    station:"Near Aid Station: Mile 3",
+  },
+  {
+    km:12, time:"+1:19", phase:"early", label:"UCAN Edge #2",
+    fuel:"ucannc", carbs:19,
+    detail:"Second UCAN Edge. 19g, slow-release stacking on top of UCAN #1 — sustained energy through Zone 2 transition. No GI stress. Take between stations, Powerade at Mile 7. Hold pace at 6:32-6:35/km.",
+    station:"Near Aid Station: Mile 7",
   },
   {
     km:13, time:"+1:25", phase:"early", label:"Half Split Check",
@@ -111,9 +119,9 @@ export const marathonPlan = [
     station:"Aid Station: Mile 9",
   },
   {
-    km:17, time:"+1:51", phase:"middle", label:"UCAN Edge #2 — Zone 2 Begins",
-    fuel:"ucannc", carbs:19,
-    detail:"Zone 2 starts here. UCAN Edge #2 — 19g, gut stays quiet. Ease to 6:23-6:25/km, a controlled release not a surge. Mile 17 Pure Fuel station is just ahead — take Powerade there but skip the Anderson's, you are on UCAN today. Start alternating Powerade at stations from here.",
+    km:17, time:"+1:51", phase:"middle", label:"UCAN+Caff #1 — Zone 2 Begins",
+    fuel:"ucan", carbs:19, caffeine:75,
+    detail:"Zone 2 starts here. First caffeine dose: UCAN Edge + 75mg caffeine. 19g slow-release, gut stays quiet. Caffeine peaks ~km 24 and carries into Zone 3. Ease to 6:23-6:25/km, a controlled release not a surge. Start alternating Powerade at stations from here.",
     station:"Aid Station: Mile 11",
   },
   {
@@ -123,9 +131,15 @@ export const marathonPlan = [
     station:"Aid Station: Mile 13",
   },
   {
-    km:29, time:"+3:08", phase:"late", label:"UCAN Edge+Caffeine — Zone 3 Begins",
+    km:23, time:"+2:30", phase:"middle", label:"SiS GO #1 — Glycogen Top-Up",
+    fuel:"sis", carbs:22,
+    detail:"First fast carbs of the day. SiS GO Isotonic — 22g fast maltodextrin, no water needed. Top up glycogen before Zone 3 demand spikes. Two hours of UCAN base means your gut is ready for this. Still 6:23-6:25/km.",
+    station:"Between Aid Stations: Mile 14-15",
+  },
+  {
+    km:29, time:"+3:08", phase:"late", label:"UCAN+Caff #2 — Zone 3 Begins",
     fuel:"ucan", carbs:19, caffeine:75,
-    detail:"Zone 3. UCAN Edge + 75mg caffeine — 19g slow-release + the push you have been saving. Take it between stations, no water needed. Deliberately push to 6:10-6:15/km. This is you finally racing. Caffeine peaks in ~25 min, right at Lemon Drop Hill.",
+    detail:"Zone 3. Second caffeine dose: UCAN Edge + 75mg caffeine — slow-release plus the push you have been saving. Take it between stations, no water needed. Deliberately push to 6:10-6:15/km. This is you finally racing. Caffeine peaks in ~25 min, right at Lemon Drop Hill.",
     station:"Between stations",
   },
   {
@@ -135,15 +149,21 @@ export const marathonPlan = [
     station:"Aid Stations: Miles 20, 21, 22",
   },
   {
-    km:35, time:"+3:41", phase:"final", label:"Lemon Drop Hill — UCAN+Caff Active",
+    km:34, time:"+3:38", phase:"final", label:"SiS GO #2 — Pre-Hill Fast Carbs",
+    fuel:"sis", carbs:22,
+    detail:"Second SiS GO — 22g fast maltodextrin. Energy lands right before Lemon Drop Hill. Both caffeine doses are stacked and active. No water needed. Keep pushing 6:10-6:15/km — the climb is coming.",
+    station:"Aid Station: Mile 21",
+  },
+  {
+    km:35, time:"+3:43", phase:"final", label:"Lemon Drop Hill — Caffeine Stacked",
     fuel:null,
-    detail:"Lemon Drop Hill. UCAN caffeine is fully active right now — this was planned. The hill is not large but at km 35 everything is large. Shorten stride going up, keep turnover. Recover on the descent then re-engage pace.",
+    detail:"Lemon Drop Hill. Both caffeine doses fully active, SiS GO just landing. The hill is not large but at km 35 everything is large. Shorten stride going up, keep turnover. Recover on the descent then re-engage pace.",
     station:"Aid Stations: Miles 23, 24",
   },
   {
-    km:38, time:"+3:57", phase:"final", label:"UCAN Edge #3 — Final Push",
-    fuel:"ucannc", carbs:19,
-    detail:"Final UCAN. 19g slow-release. You are 4km from the finish running faster than your first half, and your gut has been clean all day. Take Powerade at every remaining station. Canal Park is 25 minutes away.",
+    km:38, time:"+4:03", phase:"final", label:"SiS GO #3 — Closing Kick",
+    fuel:"sis", carbs:22,
+    detail:"Final fuel of the day. SiS GO — 22g fast carbs land in the system right when the closing kick demands them. 4.2km to go, your gut has been clean all day, both caffeine doses still active. Take Powerade at every remaining station. Canal Park is 25 minutes away.",
     station:"Aid Station: Mile 25",
   },
   {

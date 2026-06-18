@@ -55,7 +55,7 @@ export default function Marathon() {
               </div>
             ))}
           </div>
-          <p style={{ color:'var(--dim)',fontSize:'0.82rem',marginTop:'0.85rem',lineHeight:1.5 }}>Half split target: ~2:17. Finish target: ~4:28. The course net downhill assists Zone 3 — you are running faster late with less effort than flat. Lemon Drop Hill at km 35 is why UCAN caffeine deploys at km 29.</p>
+          <p style={{ color:'var(--dim)',fontSize:'0.82rem',marginTop:'0.85rem',lineHeight:1.5 }}>Half split target: ~2:17. Finish target: ~4:28. The course net downhill assists Zone 3 — you are running faster late with less effort than flat. Split-dose caffeine: coffee at breakfast, UCAN+Caff at km 17 (covers Zone 2), UCAN+Caff at km 29 (peaks at Lemon Drop Hill, km 35).</p>
         </div>
 
         {/* Fuel strip */}
@@ -66,7 +66,7 @@ export default function Marathon() {
               const p = products[r.fuel];
               const fuelsBefore = marathonPlan.filter(x => x.fuel).slice(0, i);
               const typeCount = fuelsBefore.filter(x => x.fuel === r.fuel).length + 1;
-              const name = r.fuel === 'ucan' ? 'UCAN Caff' : r.fuel === 'ucannc' ? `UCAN Edge #${typeCount}` : r.fuel === 'anderson' ? `Anderson's #${typeCount}` : 'SiS GO';
+              const name = r.fuel === 'ucan' ? `UCAN+Caff #${typeCount}` : r.fuel === 'ucannc' ? `UCAN Edge #${typeCount}` : r.fuel === 'sis' ? `SiS GO #${typeCount}` : r.fuel === 'anderson' ? `Anderson's #${typeCount}` : r.fuel;
               return (
                 <div key={i} style={{ background:p.color+'18',border:`1px solid ${p.color}50`,borderRadius:6,padding:'0.35rem 0.65rem' }}>
                   <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.62rem',color:p.color,fontWeight:700 }}>km {r.km}</div>
@@ -92,10 +92,10 @@ export default function Marathon() {
         <div style={{ marginTop:'2.5rem',padding:'1.25rem',background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:10 }}>
           <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.75rem' }}>Aid Station Strategy</div>
           {[
-            "Take UCAN between stations, not at them — LIVSTEADY needs no water. Chase with Powerade at the next station.",
+            "Take UCAN and SiS between stations, not at them — neither needs water. Chase with Powerade at the next station.",
             "Pinch your cup. Slight slowdown at stations — 10 seconds over 42km is nothing.",
-            "Mile 17 Pure Fuel station has Anderson's on-course — take Powerade there instead, you are on UCAN today.",
-            "UCAN Edge+Caffeine at km 29 — no water needed, take it between stations.",
+            "Mile 17 Pure Fuel station has Anderson's on-course — take Powerade there instead, you are on your own UCAN plan today.",
+            "Two caffeine packets: UCAN+Caff at km 17 and km 29. Both isolated in a labeled pocket — do not confuse with plain UCAN Edge mid-race.",
             "Fresh fruit near Miles 19 and 23.5. Grab it if stomach is happy.",
             "Stations every mile from Mile 19. Do not skip a single one.",
           ].map((note,i) => (
