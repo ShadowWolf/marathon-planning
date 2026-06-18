@@ -34,7 +34,7 @@ export default function Landing() {
             20-mile peak training run tomorrow, then race day June 21. Anderson's Pure Fuel primary, UCAN Edge caffeine strategic, Skratch Labs replacing sodium tablets.
           </p>
           <div style={{ display:'flex',gap:'0.75rem',flexWrap:'wrap' }}>
-            {[{val:'4:30:00',label:'Goal Time'},{val:'6:23/km',label:'Race Pace'},{val:'~60g/hr',label:'Carb Target'},{val:'8 Opens',label:'Race Day Total'}].map(({val,label}) => (
+            {[{val:'4:30:00',label:'Goal Time'},{val:'6:23/km',label:'Race Pace'},{val:'UCAN Only',label:'Fuel Strategy'},{val:'5 Opens',label:'Race Day Total'}].map(({val,label}) => (
               <div key={label} style={{ background:'rgba(255,255,255,0.04)',border:'1px solid var(--border)',borderRadius:8,padding:'0.6rem 1.1rem',backdropFilter:'blur(8px)' }}>
                 <div style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'clamp(1.2rem,2.5vw,1.5rem)',color:'var(--accent)',letterSpacing:'0.05em' }}>{val}</div>
                 <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.62rem',color:'var(--muted)',textTransform:'uppercase',letterSpacing:'0.14em' }}>{label}</div>

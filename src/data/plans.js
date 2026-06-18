@@ -4,6 +4,7 @@ export const products = {
   anderson: { name:"Anderson's Pure Fuel", short:"Anderson's", carbs:27, sodium:5,  caffeine:0,   water:false, color:"#c8501a", emoji:"🍁", note:"Fructose+glucose blend, GI 54, all-natural. Thin consistency, easy to swallow." },
   sis:      { name:"SiS GO Isotonic",      short:"SiS GO",     carbs:22, sodium:10, caffeine:0,   water:false, color:"#1a7a58", emoji:"🟢", note:"Maltodextrin-based, fast-acting, isotonic. No water needed. Thin liquid texture." },
   ucan:     { name:"UCAN Edge + Caffeine", short:"UCAN Caff",  carbs:19, sodium:55, caffeine:75,  water:false, color:"#1a50a0", emoji:"☕", note:"LIVSTEADY slow-release corn starch + 75mg caffeine. 75+ min steady energy. No water needed." },
+  ucannc:   { name:"UCAN Edge",            short:"UCAN Edge",  carbs:19, sodium:55, caffeine:0,   water:false, color:"#1a50a0", emoji:"⚡", note:"LIVSTEADY slow-release corn starch. No fructose — very GI-gentle. Sustained energy for 75+ min. No water needed." },
   skratch:  { name:"Skratch Labs Hydration",short:"Skratch",   carbs:20, sodium:400,caffeine:0,   water:true,  color:"#8a3898", emoji:"💧", note:"400mg sodium per serving — replaces sodium tablets. Mix pre-run in 500ml water." },
 };
 
@@ -19,8 +20,8 @@ export const sharedPreRace = [
   { time:"T-3h",     icon:"⏰", label:"Wake & Hydrate",       detail:"500ml plain water immediately. Have it on the nightstand the night before." },
   { time:"T-2h 45m", icon:"🥣", label:"Breakfast",            detail:"Quaker Oats Protein Granola + whole milk, 1.5-2 cups (~80-100g carbs). Coffee only if that is already your daily routine." },
   { time:"T-1h 30m", icon:"💧", label:"Skratch Labs Mix",      detail:"Mix 1 Skratch Labs packet into 500ml water. Sip over 45 minutes. This is your sodium load — do not skip it." },
-  { time:"T-45m",    icon:"🍌", label:"Optional Snack",        detail:"Banana or one Anderson's packet if hungry. Skip entirely if not hungry." },
-  { time:"T-30m",    icon:"🎽", label:"Corrals",               detail:"Anderson's packets in order, UCAN caffeine isolated. Light dynamic warm-up. Get into your corral early." },
+  { time:"T-45m",    icon:"⚡", label:"UCAN Edge Pre-Load",     detail:"One UCAN Edge packet now. 19g slow-release carbs, no water needed. Bridges breakfast to race start and extends your glycogen runway into the first hour. Not optional — take it." },
+  { time:"T-30m",    icon:"🎽", label:"Corrals",               detail:"4 UCAN Edge packets staged, UCAN Edge+Caffeine isolated in a separate pocket. Light dynamic warm-up. Get into your corral early." },
   { time:"T-5m",     icon:"💧", label:"Last Sip",              detail:"One mouthful of water. You are fueled. Now run." },
 ];
 
@@ -88,7 +89,8 @@ export const run20Plan = [
 // Zone 2 (km 14-28): 6:23-6:25/km goal pace settle.
 // Zone 3 (km 28-42.2): 6:10-6:15/km deliberate push.
 // Half split target: ~2:17. Finish target: ~4:28.
-// Course net downhill assists Zone 3. UCAN caffeine at km 29 timed for Lemon Drop Hill (km 35).
+// Course net downhill assists Zone 3. UCAN+caff at km 29 timed for Lemon Drop Hill (km 35).
+// Fuel: UCAN-only. No fructose. 1 pre-race + 4 during = 5 total (95g). GI-gentle throughout.
 export const marathonPlan = [
   {
     km:0, time:"+0:00", phase:"early", label:"Zone 1 Begins — Patience",
@@ -97,16 +99,10 @@ export const marathonPlan = [
     station:null,
   },
   {
-    km:5, time:"+0:33", phase:"early", label:"Anderson's #1 — Stay Patient",
-    fuel:"anderson", carbs:27,
-    detail:"Mile 3 aid station. Anderson's + water. Still 6:32-6:35/km. Check your watch — if you are faster than 6:30 back off deliberately. You are not racing yet. This is investment.",
-    station:"Aid Station: Mile 3",
-  },
-  {
-    km:10, time:"+1:06", phase:"early", label:"Anderson's #2 — Build Awareness",
-    fuel:"anderson", carbs:27,
-    detail:"Mile 7 station. Anderson's + water only. How do you feel? Easy, controlled, slightly bored — that is the target sensation at km 10. If you feel like you are racing, you are going too fast.",
-    station:"Aid Station: Mile 7",
+    km:9, time:"+0:59", phase:"early", label:"UCAN Edge #1",
+    fuel:"ucannc", carbs:19,
+    detail:"First UCAN. 19g slow-release, no fructose, no GI stress. Take it between stations — no water needed, chase with Powerade at the next station. Pre-race UCAN is still active, this extends the window. Still 6:32-6:35/km.",
+    station:"Near Aid Station: Mile 5-6",
   },
   {
     km:13, time:"+1:25", phase:"early", label:"Half Split Check",
@@ -115,9 +111,9 @@ export const marathonPlan = [
     station:"Aid Station: Mile 9",
   },
   {
-    km:17, time:"+1:51", phase:"middle", label:"Anderson's #3 — Zone 2 Begins",
-    fuel:"anderson", carbs:27,
-    detail:"Zone 2 starts here. Ease to 6:23-6:25/km — a controlled release, not a surge. Anderson's + water. Start alternating Powerade at stations from here on.",
+    km:17, time:"+1:51", phase:"middle", label:"UCAN Edge #2 — Zone 2 Begins",
+    fuel:"ucannc", carbs:19,
+    detail:"Zone 2 starts here. UCAN Edge #2 — 19g, gut stays quiet. Ease to 6:23-6:25/km, a controlled release not a surge. Mile 17 Pure Fuel station is just ahead — take Powerade there but skip the Anderson's, you are on UCAN today. Start alternating Powerade at stations from here.",
     station:"Aid Station: Mile 11",
   },
   {
@@ -127,21 +123,9 @@ export const marathonPlan = [
     station:"Aid Station: Mile 13",
   },
   {
-    km:25, time:"+2:43", phase:"middle", label:"Anderson's #4 — Pure Fuel Station",
-    fuel:"anderson", carbs:27,
-    detail:"Mile 17 official Anderson's Pure Fuel station. Grab one here regardless of supply. Still 6:23-6:25/km. The urge to accelerate starts here — resist for 3 more km. Discipline now, speed later.",
-    station:"Pure Fuel Station: Mile 17",
-  },
-  {
-    km:28, time:"+3:01", phase:"late", label:"Anderson's #5 — Zone 3 Approaches",
-    fuel:"anderson", carbs:27,
-    detail:"Mile 19 station. Anderson's + Powerade. Fresh fruit available — grab it. Take stock: legs? Breathing? Energy? If all three feel controlled, Zone 3 is go in 1km.",
-    station:"Aid Station: Mile 19 + Fresh Fruit",
-  },
-  {
-    km:29, time:"+3:08", phase:"late", label:"UCAN Caffeine — Zone 3 Begins",
+    km:29, time:"+3:08", phase:"late", label:"UCAN Edge+Caffeine — Zone 3 Begins",
     fuel:"ucan", carbs:19, caffeine:75,
-    detail:"Zone 3. UCAN caffeine — 19g slow-release + 75mg caffeine. No water needed, take between stations. Deliberately push to 6:10-6:15/km. This is you finally racing. Caffeine peaks in ~25 min, right at Lemon Drop Hill.",
+    detail:"Zone 3. UCAN Edge + 75mg caffeine — 19g slow-release + the push you have been saving. Take it between stations, no water needed. Deliberately push to 6:10-6:15/km. This is you finally racing. Caffeine peaks in ~25 min, right at Lemon Drop Hill.",
     station:"Between stations",
   },
   {
@@ -151,15 +135,15 @@ export const marathonPlan = [
     station:"Aid Stations: Miles 20, 21, 22",
   },
   {
-    km:35, time:"+3:41", phase:"final", label:"Lemon Drop Hill — UCAN Is Active",
+    km:35, time:"+3:41", phase:"final", label:"Lemon Drop Hill — UCAN+Caff Active",
     fuel:null,
     detail:"Lemon Drop Hill. UCAN caffeine is fully active right now — this was planned. The hill is not large but at km 35 everything is large. Shorten stride going up, keep turnover. Recover on the descent then re-engage pace.",
     station:"Aid Stations: Miles 23, 24",
   },
   {
-    km:37, time:"+3:53", phase:"final", label:"SiS GO — Final Fast Carbs",
-    fuel:"sis", carbs:22,
-    detail:"SiS GO isotonic — 22g fast carbs, no water needed. Last fuel of the race. You are 5km from the finish running faster than your first half. Take Powerade at every remaining station. Canal Park is close.",
+    km:38, time:"+3:57", phase:"final", label:"UCAN Edge #3 — Final Push",
+    fuel:"ucannc", carbs:19,
+    detail:"Final UCAN. 19g slow-release. You are 4km from the finish running faster than your first half, and your gut has been clean all day. Take Powerade at every remaining station. Canal Park is 25 minutes away.",
     station:"Aid Station: Mile 25",
   },
   {
@@ -176,12 +160,12 @@ export const dinner = {
   address:"405 Lake Avenue South, Canal Park, Duluth MN",
   strategy:"High carbs, moderate protein, low fat, low fiber. Tomato-based sauces over cream. Eat until comfortably full — not stuffed. You do not want to be bloated at the start line.",
   recommended:[
-    { rank:1, label:"Best Choice",  color:"#30c060", name:"Pasta Amatriciana",             desc:"Bucatini with pancetta, caramelized onions and smoky tomato sauce. Tomato-based, fast-digesting carbs. Low fat. This is the move." },
-    { rank:2, label:"Great Option", color:"#c8a020", name:"Rigatoni with Italian Sausage",  desc:"Rigatoni with Italian sausage, marinara, spinach and Parmigiano-Reggiano. Solid carb load, familiar flavors." },
-    { rank:3, label:"Good Option",  color:"#c05018", name:"Spaghetti Arrabbiata",            desc:"Spaghetti with spicy tomato sauce, garlic, basil and fennel sausage. Skip if spicy foods bother your stomach." },
+    { rank:1, label:"Best Choice",  color:"#30c060", name:"Rigatoni Balsamico",                      desc:"Rigatoni with Italian sausage, marinara sauce, spinach and Parmigiano-Reggiano, topped with balsamic reduction. Tomato-based, solid carbs, familiar flavors. This is the move." },
+    { rank:2, label:"Great Option", color:"#c8a020", name:"Gnocchi Fresco",                           desc:"Freshly made gnocchi with beefsteak tomato and goat cheese, topped with fresh basil. Light and clean — tomato-based with less bulk than a full pasta. Good choice if you want something lighter." },
+    { rank:3, label:"Good Option",  color:"#c05018", name:"Pasta alla Arrabbiata with Italian Sausage", desc:"Spaghetti with spicy tomato sauce, garlic, basil and fennel sausage. Skip if spicy foods bother your stomach." },
   ],
-  starter:"Bruschetta — Roma tomatoes, garlic and basil on grilled Tuscan toast. Light, carb-forward, easy on the stomach.",
-  avoid:["Lobster Ravioli or cream-sauced pasta — fat slows overnight digestion","Risotto — too rich the night before","Beef Tenderloin — high fat and protein, hard to process","Calamari — fried food is a gamble","Large salads — too much fiber"],
+  starter:"Bellisio's Traditional Bruschetta ($14.40) — fresh Roma tomatoes, garlic and basil on grilled Tuscan bread. Light, carb-forward, easy on the stomach.",
+  avoid:["Lobster Ravioli with Grilled Shrimp or Lobster and Shrimp Linguini — lobster cream sauce slows overnight digestion","Fettuccine Alfredo or Seaside Fettuccine — butter and cream sauce is too heavy pre-race","Pappardelle alla Norcina — cream and pancetta, same problem","Italian Sausage Risotto or Shrimp and Asparagus Risotto — too rich the night before","Beef Tenderloin or Filet Mignon alla Bellisio's — high fat and protein, hard to process overnight","Calamari and Peppers — fried food is a GI gamble","Caesar Salad or Tuscan Salad — too much fiber and fat"],
   drinks:[
     { name:"Sparkling Water", good:true,  note:"Best choice. Hydration without GI risk." },
     { name:"Italian Soda",    good:true,  note:"Light, festive, a little sugar." },

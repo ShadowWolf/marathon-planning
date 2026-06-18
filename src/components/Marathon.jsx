@@ -1,6 +1,6 @@
 import Nav from './Nav';
 import { PreRow, RunRow } from './Timeline';
-import { marathonPlan, sharedPreRace } from '../data/plans';
+import { marathonPlan, sharedPreRace, products } from '../data/plans';
 
 export default function Marathon() {
   const totalCarbs = marathonPlan.reduce((s,r) => s+(r.carbs||0),0);
@@ -63,13 +63,14 @@ export default function Marathon() {
           <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.85rem' }}>Race Day Fuel at a Glance</div>
           <div style={{ display:'flex',flexWrap:'wrap',gap:'0.4rem' }}>
             {marathonPlan.filter(r => r.fuel).map((r,i) => {
-              const colors = { anderson:'var(--maple)', sis:'var(--sis)', ucan:'var(--ucan)' };
-              const c = colors[r.fuel] || 'var(--accent)';
-              const emojis = { anderson:'🍁', sis:'🟢', ucan:'☕' };
+              const p = products[r.fuel];
+              const fuelsBefore = marathonPlan.filter(x => x.fuel).slice(0, i);
+              const typeCount = fuelsBefore.filter(x => x.fuel === r.fuel).length + 1;
+              const name = r.fuel === 'ucan' ? 'UCAN Caff' : r.fuel === 'ucannc' ? `UCAN Edge #${typeCount}` : r.fuel === 'anderson' ? `Anderson's #${typeCount}` : 'SiS GO';
               return (
-                <div key={i} style={{ background:c+'18',border:`1px solid ${c}50`,borderRadius:6,padding:'0.35rem 0.65rem' }}>
-                  <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.62rem',color:c,fontWeight:700 }}>km {r.km}</div>
-                  <div style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'0.9rem',color:'var(--text)',letterSpacing:'0.04em' }}>{emojis[r.fuel]} {r.fuel === 'anderson' ? `Anderson's #${i+1}` : r.fuel === 'ucan' ? 'UCAN Caff' : 'SiS GO'}</div>
+                <div key={i} style={{ background:p.color+'18',border:`1px solid ${p.color}50`,borderRadius:6,padding:'0.35rem 0.65rem' }}>
+                  <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.62rem',color:p.color,fontWeight:700 }}>km {r.km}</div>
+                  <div style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'0.9rem',color:'var(--text)',letterSpacing:'0.04em' }}>{p.emoji} {name}</div>
                   <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.58rem',color:'var(--muted)' }}>{r.carbs}g{r.caffeine?` +${r.caffeine}mg`:''}</div>
                 </div>
               );
@@ -91,11 +92,10 @@ export default function Marathon() {
         <div style={{ marginTop:'2.5rem',padding:'1.25rem',background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:10 }}>
           <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.75rem' }}>Aid Station Strategy</div>
           {[
-            "Anderson's packet 1-2 min before the station. Chase with water immediately.",
+            "Take UCAN between stations, not at them — LIVSTEADY needs no water. Chase with Powerade at the next station.",
             "Pinch your cup. Slight slowdown at stations — 10 seconds over 42km is nothing.",
-            "Miles 3-11: water only with gels. Mile 11 onward: alternate Powerade with water.",
-            "Mile 17 Pure Fuel station has Anderson's on-course — grab one even if you have enough.",
-            "UCAN caffeine at km 29 — no water needed, take it between stations if easier.",
+            "Mile 17 Pure Fuel station has Anderson's on-course — take Powerade there instead, you are on UCAN today.",
+            "UCAN Edge+Caffeine at km 29 — no water needed, take it between stations.",
             "Fresh fruit near Miles 19 and 23.5. Grab it if stomach is happy.",
             "Stations every mile from Mile 19. Do not skip a single one.",
           ].map((note,i) => (
