@@ -28,7 +28,7 @@ export default function Run20() {
       <div style={{ position:'relative',height:'clamp(280px,42vh,440px)',overflow:'hidden' }}>
         <img src="https://images.unsplash.com/photo-1502904550040-7534597429ae?w=1400&q=80" alt="20-mile run" style={{ width:'100%',height:'100%',objectFit:'cover',objectPosition:'center 40%',filter:'brightness(0.28) saturate(0.5)' }} />
         <div style={{ position:'absolute',inset:0,background:'linear-gradient(to bottom,transparent 15%,var(--black) 100%)' }} />
-        <div style={{ position:'absolute',top:'1rem',right:'1rem',background:'var(--accent)',color:'var(--black)',fontFamily:"'Bebas Neue',sans-serif",fontSize:'0.85rem',letterSpacing:'0.1em',padding:'0.2rem 0.6rem',borderRadius:4 }}>TOMORROW</div>
+        <div style={{ position:'absolute',top:'1rem',right:'1rem',background:'var(--surface3)',color:'var(--muted)',border:'1px solid var(--border)',fontFamily:"'Bebas Neue',sans-serif",fontSize:'0.85rem',letterSpacing:'0.1em',padding:'0.2rem 0.6rem',borderRadius:4 }}>TRAINING · DONE</div>
         <div style={{ position:'absolute',bottom:'2rem',left:'clamp(1.25rem,4vw,3rem)',right:'clamp(1.25rem,4vw,3rem)' }}>
           <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.7rem',color:'var(--accent)',letterSpacing:'0.22em',marginBottom:'0.5rem',textTransform:'uppercase' }}>Peak Training Run · 32.2 km</div>
           <h1 style={{ fontSize:'clamp(2.5rem,7vw,4.5rem)',color:'var(--text)',marginBottom:'0.4rem' }}>20-MILE RUN</h1>
