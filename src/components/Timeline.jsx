@@ -36,6 +36,16 @@ function FuelBadge({ fuelKey, carbs, caffeine }) {
   );
 }
 
+function WalkBadge({ walk }) {
+  if (!walk) return null;
+  const color = walk.inhaler ? '#c03030' : '#3a8ac0';
+  return (
+    <span style={{ display:'inline-flex',alignItems:'center',gap:'0.3rem',fontFamily:"'JetBrains Mono',monospace",fontSize:'0.62rem',color,background:color+'18',border:`1px solid ${color}40`,padding:'0.12rem 0.5rem',borderRadius:4 }}>
+      🚶 Walk · {walk.distance}m · {walk.duration}{walk.inhaler?' · 💨 Inhaler':''}
+    </span>
+  );
+}
+
 export function RunRow({ row }) {
   const [open, setOpen] = useState(false);
   const s = phaseStyle[row.phase] || phaseStyle.early;
@@ -56,6 +66,7 @@ export function RunRow({ row }) {
           <span style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.72rem',color:'var(--dim)',marginLeft:'auto' }}>{row.time}</span>
         </div>
         <FuelBadge fuelKey={row.fuel} carbs={row.carbs} caffeine={row.caffeine} />
+        <WalkBadge walk={row.walk} />
         {(open || isDone) && <p style={{ marginTop:'0.5rem',color:'#b8b4a8',fontSize:'0.9rem',lineHeight:1.55 }}>{row.detail}</p>}
         {!open && !isDone && <p style={{ marginTop:'0.25rem',color:'var(--dim)',fontSize:'0.8rem' }}>Tap for detail ↓</p>}
       </div>

@@ -1,10 +1,11 @@
 import Nav from './Nav';
 import { PreRow, RunRow } from './Timeline';
-import { marathonPlan, sharedPreRace, products } from '../data/plans';
+import { marathonWithPrepPlan, sharedPreRace, products } from '../data/plans';
 
-export default function Marathon() {
-  const totalCarbs = marathonPlan.reduce((s,r) => s+(r.carbs||0),0);
-  const openings = marathonPlan.filter(r => r.fuel).length;
+export default function MarathonWithPrep() {
+  const totalCarbs = marathonWithPrepPlan.reduce((s,r) => s+(r.carbs||0),0);
+  const openings = marathonWithPrepPlan.filter(r => r.fuel).length;
+  const walkEvents = marathonWithPrepPlan.filter(r => r.walk);
 
   return (
     <div style={{ paddingTop:52 }}>
@@ -13,21 +14,22 @@ export default function Marathon() {
         <img src="https://images.unsplash.com/photo-1639437038514-0ad841b2f62a?w=1600&q=80" alt="Split Rock Lighthouse, Lake Superior north shore" style={{ width:'100%',height:'100%',objectFit:'cover',objectPosition:'center 30%',filter:'brightness(0.25) saturate(0.45)' }} />
         <div style={{ position:'absolute',inset:0,background:'linear-gradient(to bottom,transparent 15%,var(--black) 100%)' }} />
         <div style={{ position:'absolute',bottom:'2rem',left:'clamp(1.25rem,4vw,3rem)',right:'clamp(1.25rem,4vw,3rem)' }}>
-          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.7rem',color:'var(--accent)',letterSpacing:'0.22em',marginBottom:'0.5rem',textTransform:'uppercase' }}>Saturday June 20, 2026 · Two Harbors to Canal Park</div>
-          <h1 style={{ fontSize:'clamp(2.5rem,7vw,4.5rem)',color:'var(--text)',marginBottom:'0.4rem' }}>RACE DAY</h1>
-          <p style={{ color:'var(--muted)',fontSize:'0.95rem',fontStyle:'italic' }}>Grandmas Marathon · 42.2 km · Negative Split · Target: 4:28</p>
+          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.7rem',color:'var(--accent)',letterSpacing:'0.22em',marginBottom:'0.5rem',textTransform:'uppercase' }}>Saturday June 20, 2026 · With Asthma + Walk Prep</div>
+          <h1 style={{ fontSize:'clamp(2.5rem,7vw,4.5rem)',color:'var(--text)',marginBottom:'0.4rem' }}>RACE DAY <span style={{ color:'var(--accent)' }}>+ PREP</span></h1>
+          <p style={{ color:'var(--muted)',fontSize:'0.95rem',fontStyle:'italic' }}>Negative split · 4 walk breaks · Inhaler at half + 20mi · Target 4:28</p>
         </div>
       </div>
 
       <div style={{ maxWidth:700,margin:'0 auto',padding:'2rem 1.25rem 5rem' }}>
         <div style={{ display:'flex',gap:'0.75rem',flexWrap:'wrap',marginBottom:'2rem' }}>
           {[
-            {val:'6:32-6:35',label:'Zone 1 Pace'},
-            {val:'6:23-6:25',label:'Zone 2 Pace'},
-            {val:'6:10-6:15',label:'Zone 3 Pace'},
+            {val:'6:27-6:33',label:'Zone 1 Run Pace'},
+            {val:'6:18-6:20',label:'Zone 2 Run Pace'},
+            {val:'6:03-6:06',label:'Zone 3 Run Pace'},
             {val:'~2:17',label:'Half Split'},
             {val:`${totalCarbs}g`,label:'Total Carbs'},
             {val:String(openings),label:'Fuel Openings'},
+            {val:String(walkEvents.length),label:'Walk Breaks'},
           ].map(({val,label}) => (
             <div key={label} style={{ background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:8,padding:'0.45rem 0.85rem' }}>
               <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.62rem',color:'var(--dim)',textTransform:'uppercase',letterSpacing:'0.1em' }}>{label}</div>
@@ -38,12 +40,12 @@ export default function Marathon() {
 
         {/* Zone strategy */}
         <div style={{ marginBottom:'1.5rem',padding:'1rem 1.25rem',background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:10 }}>
-          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.85rem' }}>Negative Split Strategy — 3 Zones</div>
+          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.85rem' }}>Negative Split (Walk-Adjusted) — 3 Zones</div>
           <div style={{ display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))',gap:'0.6rem' }}>
             {[
-              { zone:'Zone 1', km:'km 0–14', pace:'6:32–6:35/km', desc:'Patience. Feels too slow.', color:'#30c060' },
-              { zone:'Zone 2', km:'km 14–28', pace:'6:23–6:25/km', desc:'Goal pace. Controlled release.', color:'#c8a020' },
-              { zone:'Zone 3', km:'km 28–42', pace:'6:10–6:15/km', desc:'Racing. Deliberate push.', color:'#c03030' },
+              { zone:'Zone 1', km:'km 0–14', pace:'6:27/km run', desc:'Patience. Walk at km 10.', color:'#30c060' },
+              { zone:'Zone 2', km:'km 14–28', pace:'6:18/km run', desc:'Goal pace. Inhaler walk at half.', color:'#c8a020' },
+              { zone:'Zone 3', km:'km 28–42', pace:'6:03/km run', desc:'Push. Inhaler at 20mi, walk at km 40.', color:'#c03030' },
             ].map(z => (
               <div key={z.zone} style={{ padding:'0.75rem',background:'var(--surface)',border:`1px solid ${z.color}35`,borderTop:`2px solid ${z.color}`,borderRadius:8 }}>
                 <div style={{ display:'flex',justifyContent:'space-between',alignItems:'baseline',marginBottom:'0.2rem' }}>
@@ -55,16 +57,33 @@ export default function Marathon() {
               </div>
             ))}
           </div>
-          <p style={{ color:'var(--dim)',fontSize:'0.82rem',marginTop:'0.85rem',lineHeight:1.5 }}>Half split target: ~2:17. Finish target: ~4:28. The course net downhill assists Zone 3 — you are running faster late with less effort than flat. Split-dose caffeine: coffee at breakfast, UCAN+Caff at km 17 (covers Zone 2), UCAN+Caff at km 29 (peaks at Lemon Drop Hill, km 35).</p>
+          <p style={{ color:'var(--dim)',fontSize:'0.82rem',marginTop:'0.85rem',lineHeight:1.5 }}>Running paces are slightly faster than the no-walk plan to absorb ~9 minutes of total walking. Half split target: ~2:17. Finish target: ~4:28. Same caffeine architecture: coffee + UCAN+Caff at km 17 + UCAN+Caff at km 29.</p>
+        </div>
+
+        {/* Walk breaks card */}
+        <div style={{ marginBottom:'1.5rem',padding:'1rem 1.25rem',background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:10 }}>
+          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.85rem' }}>Walk Breaks — 4 Scheduled Stops</div>
+          <div style={{ display:'flex',flexWrap:'wrap',gap:'0.4rem' }}>
+            {walkEvents.map((w,i) => {
+              const color = w.walk.inhaler ? '#c03030' : '#3a8ac0';
+              return (
+                <div key={i} style={{ background:color+'18',border:`1px solid ${color}50`,borderRadius:6,padding:'0.4rem 0.7rem',minWidth:140 }}>
+                  <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.62rem',color,fontWeight:700 }}>km {w.km} · {w.time}</div>
+                  <div style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'0.95rem',color:'var(--text)',letterSpacing:'0.04em' }}>{w.walk.inhaler ? '💨 Inhaler Walk' : '🚶 Walk Break'}</div>
+                  <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.58rem',color:'var(--muted)' }}>{w.walk.distance}m · {w.walk.duration}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Fuel strip */}
         <div style={{ marginBottom:'2rem',padding:'1rem 1.25rem',background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:10 }}>
           <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.85rem' }}>Race Day Fuel at a Glance</div>
           <div style={{ display:'flex',flexWrap:'wrap',gap:'0.4rem' }}>
-            {marathonPlan.filter(r => r.fuel).map((r,i) => {
+            {marathonWithPrepPlan.filter(r => r.fuel).map((r,i) => {
               const p = products[r.fuel];
-              const fuelsBefore = marathonPlan.filter(x => x.fuel).slice(0, i);
+              const fuelsBefore = marathonWithPrepPlan.filter(x => x.fuel).slice(0, i);
               const typeCount = fuelsBefore.filter(x => x.fuel === r.fuel).length + 1;
               const name = r.fuel === 'ucan' ? `UCAN+Caff #${typeCount}` : r.fuel === 'ucannc' ? `UCAN Edge #${typeCount}` : r.fuel === 'sis' ? `SiS GO #${typeCount}` : r.fuel === 'anderson' ? `Anderson's #${typeCount}` : r.fuel;
               return (
@@ -86,18 +105,18 @@ export default function Marathon() {
         <h2 style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'1.4rem',color:'var(--muted)',marginBottom:'1rem',letterSpacing:'0.08em' }}>THE RACE</h2>
         <div style={{ position:'relative' }}>
           <div style={{ position:'absolute',left:25,top:20,bottom:20,width:2,background:'linear-gradient(to bottom,#1a7a40,#c8a020,#c06020,#c03030)',opacity:0.3 }} />
-          {marathonPlan.map((row,i) => <RunRow key={i} row={row} />)}
+          {marathonWithPrepPlan.map((row,i) => <RunRow key={i} row={row} />)}
         </div>
 
         <div style={{ marginTop:'2.5rem',padding:'1.25rem',background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:10 }}>
-          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.75rem' }}>Aid Station Strategy</div>
+          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.75rem' }}>Asthma + Walk-Break Notes</div>
           {[
-            "Take UCAN and SiS between stations, not at them — neither needs water. Chase with Powerade at the next station.",
-            "Pinch your cup. Slight slowdown at stations — 10 seconds over 42km is nothing.",
-            "Mile 17 Pure Fuel station has Anderson's on-course — take Powerade there instead, you are on your own UCAN plan today.",
-            "Two caffeine packets: UCAN+Caff at km 17 and km 29. Both isolated in a labeled pocket — do not confuse with plain UCAN Edge mid-race.",
-            "Fresh fruit near Miles 19 and 23.5. Grab it if stomach is happy.",
-            "Stations every mile from Mile 19. Do not skip a single one.",
+            "Rescue inhaler isolated in a labeled pocket — easy to grab while walking, not buried with fuel.",
+            "Inhaler stops: km 21.1 (half) and km 32.2 (20-mile). About 1.5 min each. Walk ~150m, take the dose, breathe, resume running.",
+            "Walk breaks at km 10 and km 40 are pure resets — 400m brisk, ~3 min. Use them to drop tension, slow breathing, reset stride.",
+            "If breathing flares between scheduled stops, walk early — losing 30 seconds beats a full attack at km 38.",
+            "Fueling stays at km 6, 12, 17, 23, 29, 34, 38 — same as no-walk plan. UCAN/SiS don't need water; walks just make swallowing easier.",
+            "Running paces are intentionally a bit faster than the standard plan (6:27/6:18/6:03) so the walks pull totals back to 4:28.",
           ].map((note,i) => (
             <div key={i} style={{ display:'flex',gap:'0.6rem',marginBottom:'0.4rem' }}>
               <span style={{ color:'var(--accent)',marginTop:4,flexShrink:0 }}>·</span>

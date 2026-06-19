@@ -1,11 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
 
 const sections = [
-  { to:'/',           label:'Home' },
-  { to:'/marathon',   label:'Race Day' },
-  { to:'/dinner',     label:'Pre-Race Dinner' },
-  { to:'/recovery',   label:'Recovery' },
-  { to:'/run-20',     label:'Training Run' },
+  { to:'/',                label:'Home' },
+  { to:'/marathon',        label:'Race Day' },
+  { to:'/marathon-prep',   label:'Race Day + Prep' },
+  { to:'/dinner',          label:'Pre-Race Dinner' },
+  { to:'/recovery',        label:'Recovery' },
+  { to:'/run-20',          label:'Training Run' },
 ];
 
 export default function Nav() {

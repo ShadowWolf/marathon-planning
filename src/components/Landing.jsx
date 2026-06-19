@@ -1,13 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { products } from '../data/plans';
 
-const RACE_DATE = new Date('2026-06-21T00:00:00');
-function countdownLabel() {
-  const days = Math.ceil((RACE_DATE - new Date()) / 86400000);
-  if (days > 1) return `T-${days} DAYS`;
-  if (days === 1) return 'T-1 DAY';
-  if (days === 0) return 'RACE DAY';
+const DEPARTURE  = new Date('2026-06-20T05:00:00');
+const RACE_START = new Date('2026-06-20T08:10:00');
+const RACE_OVER  = new Date(RACE_START.getTime() + 5 * 3600 * 1000);
+
+function formatDuration(ms) {
+  const totalSec = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  if (h > 0) return `T-${h}h ${String(m).padStart(2,'0')}m`;
+  if (m > 0) return `${m}m ${String(s).padStart(2,'0')}s`;
+  return `${s}s`;
+}
+
+function useCountdown() {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  if (now < DEPARTURE)   return formatDuration(DEPARTURE - now);
+  if (now < RACE_START)  return formatDuration(RACE_START - now);
+  if (now < RACE_OVER)   return 'RACE UNDERWAY';
   return 'RECOVERY';
 }
 
@@ -32,8 +49,7 @@ const productList = [
   { key:'skratch', role:'Sodium + hydration · pre-race only',      carbs:'20g + 400mg sodium' },
 ];
 
-const heroStats = [
-  { val:countdownLabel(), label:'Countdown' },
+const staticStats = [
   { val:'4:28',           label:'Goal Time' },
   { val:'+2:17',          label:'Half Split' },
   { val:'6:23/km',        label:'Avg Pace' },
@@ -44,6 +60,7 @@ const heroStats = [
 ];
 
 export default function Landing() {
+  const countdown = useCountdown();
   return (
     <div>
       <div style={{ position:'relative',height:'100vh',minHeight:560,overflow:'hidden' }}>
@@ -52,7 +69,7 @@ export default function Landing() {
         <div style={{ position:'absolute',inset:0,background:'linear-gradient(160deg,transparent 35%,rgba(6,6,14,0.95) 100%)' }} />
         <div style={{ position:'absolute',inset:0,display:'flex',flexDirection:'column',justifyContent:'center',padding:'clamp(1.5rem,6vw,5rem)' }}>
           <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'clamp(0.6rem,1.2vw,0.72rem)',color:'var(--accent)',letterSpacing:'0.25em',marginBottom:'1.25rem',textTransform:'uppercase' }}>
-            Grandma's Marathon · Duluth MN · Saturday June 21, 2026
+            Grandma's Marathon · Duluth MN · Saturday June 20, 2026
           </div>
           <h1 style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'clamp(3.5rem,12vw,9rem)',color:'var(--text)',lineHeight:0.92,maxWidth:820,marginBottom:'1.25rem' }}>
             RACE<br/><span style={{ color:'var(--accent)' }}>FUEL</span><br/>PLAN
@@ -61,12 +78,19 @@ export default function Landing() {
             Race in two days. Negative split for 4:28 — UCAN base, split-dose caffeine, SiS finish. Skratch Labs replaces sodium tablets pre-race.
           </p>
           <div style={{ display:'flex',gap:'0.6rem',flexWrap:'wrap' }}>
-            {heroStats.map(({val,label}) => (
+            <div style={{ background:'rgba(232,168,48,0.10)',border:'1px solid rgba(232,168,48,0.5)',borderRadius:8,padding:'0.55rem 0.95rem',backdropFilter:'blur(8px)' }}>
+              <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'clamp(1.05rem,2.1vw,1.3rem)',color:'var(--accent)',letterSpacing:'0.04em',fontWeight:600 }}>{countdown}</div>
+              <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.6rem',color:'var(--muted)',textTransform:'uppercase',letterSpacing:'0.14em' }}>Countdown</div>
+            </div>
+            {staticStats.map(({val,label}) => (
               <div key={label} style={{ background:'rgba(255,255,255,0.04)',border:'1px solid var(--border)',borderRadius:8,padding:'0.55rem 0.95rem',backdropFilter:'blur(8px)' }}>
                 <div style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'clamp(1.05rem,2.1vw,1.35rem)',color:'var(--accent)',letterSpacing:'0.05em' }}>{val}</div>
                 <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.6rem',color:'var(--muted)',textTransform:'uppercase',letterSpacing:'0.14em' }}>{label}</div>
               </div>
             ))}
+          </div>
+          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.7rem',color:'var(--dim)',letterSpacing:'0.1em',marginTop:'1rem',fontStyle:'italic' }}>
+            Depart Sat 5:00 AM · Race Start Sat 8:10 AM
           </div>
         </div>
         <div style={{ position:'absolute',bottom:'1.5rem',left:'50%',transform:'translateX(-50%)',display:'flex',flexDirection:'column',alignItems:'center',gap:'0.3rem' }}>

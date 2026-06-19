@@ -174,6 +174,113 @@ export const marathonPlan = [
   },
 ];
 
+// ─── MARATHON RACE PLAN WITH PREP (NEGATIVE SPLIT + WALK BREAKS) ───────────
+// Same negative split shape as marathonPlan, but absorbs 4 walk breaks while
+// still finishing at 4:28. Walks: km 10 (400m), km 21.1 inhaler (~150m),
+// km 32.2 inhaler (~150m), km 40 (400m). Total walking ~1.1 km / ~9 min.
+// Running paces shift faster to compensate:
+//   Zone 1 (km 0-14):   6:27/km (vs 6:33 standard)
+//   Zone 2 (km 14-28):  6:18/km (vs 6:24 standard)
+//   Zone 3 (km 28-42.2): 6:03/km (vs 6:08 standard)
+// Half split target: ~2:17 (matches standard plan).
+// Fuel: identical 7-packet schedule, same km positions as marathonPlan.
+export const marathonWithPrepPlan = [
+  {
+    km:0, time:"+0:00", phase:"early", label:"Zone 1 Begins — Patience",
+    fuel:null,
+    detail:"6:27/km running pace today — fractionally faster than the no-walks plan, because the walks will pull you back. This still feels controlled. The downhill tempts you to bank time early. Resist.",
+    station:null,
+  },
+  {
+    km:6, time:"+0:39", phase:"early", label:"UCAN Edge #1",
+    fuel:"ucannc", carbs:19,
+    detail:"First in-race UCAN. 19g slow-release, no fructose. Take between stations, chase with Powerade at Mile 3. Pre-race UCAN is still active. Hold 6:27/km — first walk is in 4 km.",
+    station:"Near Aid Station: Mile 3",
+  },
+  {
+    km:10, time:"+1:05", phase:"early", label:"Walk Break #1 — 400m",
+    fuel:null,
+    walk:{ distance:400, duration:"~3 min", inhaler:false },
+    detail:"First scheduled walk break. 400m brisk walk (~3 min). Reset breathing, drop shoulders, unclench hands. This is the every-10km strategy — short, intentional, gets you back to running fresh. Resume 6:27/km after.",
+    station:null,
+  },
+  {
+    km:12, time:"+1:18", phase:"early", label:"UCAN Edge #2",
+    fuel:"ucannc", carbs:19,
+    detail:"Second UCAN Edge. 19g slow-release stacking on UCAN #1 — sustained energy through the Zone 2 transition. You just walked, gut should be settled — easy swallow. Hold 6:27/km.",
+    station:"Near Aid Station: Mile 7",
+  },
+  {
+    km:13, time:"+1:25", phase:"early", label:"Half Split Check",
+    fuel:null,
+    detail:"Project your half split — target ~2:17 at km 21.1. With the walks built into the plan, your running pace is faster (6:27/6:18/6:03) but the totals balance out. If you are projecting faster than 2:17, ease the running pace deliberately.",
+    station:"Aid Station: Mile 9",
+  },
+  {
+    km:17, time:"+1:51", phase:"middle", label:"UCAN+Caff #1 — Zone 2 Begins",
+    fuel:"ucan", carbs:19, caffeine:75,
+    detail:"Zone 2 starts. First caffeine dose: UCAN Edge + 75mg caffeine. Peaks ~km 24, carries into Zone 3. Ease to 6:18/km running pace. Inhaler walk is at km 21.1 — about 25 minutes from here.",
+    station:"Aid Station: Mile 11",
+  },
+  {
+    km:21.1, time:"+2:17", phase:"middle", label:"Half + Inhaler Walk",
+    fuel:null,
+    walk:{ distance:150, duration:"~1.5 min", inhaler:true },
+    detail:"Half marathon + scheduled inhaler stop. Brisk walk ~150m while you take the rescue inhaler. This replaces the km 20 walk break — combined walk + medical, 1.5 min total. Half split should be right around 2:17. After the inhaler, resume 6:18/km — you are in the patient phase of Zone 2.",
+    station:"Aid Station: Mile 13 / Half Mark",
+  },
+  {
+    km:23, time:"+2:29", phase:"middle", label:"SiS GO #1 — Glycogen Top-Up",
+    fuel:"sis", carbs:22,
+    detail:"First fast carbs of the day. SiS GO — 22g maltodextrin, no water needed. Top up glycogen before Zone 3 demand spikes. Inhaler walk is just behind you; gut is settled. Still 6:18/km.",
+    station:"Between Aid Stations: Mile 14-15",
+  },
+  {
+    km:29, time:"+3:07", phase:"late", label:"UCAN+Caff #2 — Zone 3 Begins",
+    fuel:"ucan", carbs:19, caffeine:75,
+    detail:"Zone 3. Second caffeine dose: UCAN Edge + 75mg caffeine. Take between stations, no water needed. Push to 6:03/km running pace. Inhaler walk is at km 32.2 — about 18 minutes from here. Caffeine peaks at Lemon Drop.",
+    station:"Between stations",
+  },
+  {
+    km:32.2, time:"+3:26", phase:"late", label:"20-Mile + Inhaler Walk",
+    fuel:null,
+    walk:{ distance:150, duration:"~1.5 min", inhaler:true },
+    detail:"20-mile mark + scheduled inhaler stop. Brisk walk ~150m while you take the rescue inhaler. This replaces the km 30 walk break. Both caffeine doses are stacked and active — you should feel sharp. Lemon Drop is 3 km ahead. Resume 6:03/km after the inhaler.",
+    station:"Aid Station: Mile 20",
+  },
+  {
+    km:34, time:"+3:37", phase:"final", label:"SiS GO #2 — Pre-Hill Fast Carbs",
+    fuel:"sis", carbs:22,
+    detail:"Second SiS GO — 22g maltodextrin. Energy lands right before Lemon Drop. No water needed. Keep pushing 6:03/km. You just walked at km 32.2 — gut is settled, easy swallow.",
+    station:"Aid Station: Mile 21",
+  },
+  {
+    km:35, time:"+3:43", phase:"final", label:"Lemon Drop Hill — Caffeine Stacked",
+    fuel:null,
+    detail:"Lemon Drop Hill. Both caffeine doses fully active, SiS GO just landing. Shorten stride going up, keep turnover. Recover on the descent then re-engage 6:03/km. Last walk break is at km 40 — a deliberate reset before the closing kick.",
+    station:"Aid Stations: Miles 23, 24",
+  },
+  {
+    km:38, time:"+4:01", phase:"final", label:"SiS GO #3 — Final Fuel",
+    fuel:"sis", carbs:22,
+    detail:"Final fuel of the day. SiS GO — 22g fast carbs land right when the closing kick demands them. 4.2 km to go. Both caffeine doses still active. Take Powerade at every remaining station.",
+    station:"Aid Station: Mile 25",
+  },
+  {
+    km:40, time:"+4:13", phase:"final", label:"Walk Break #4 — 400m",
+    fuel:null,
+    walk:{ distance:400, duration:"~3 min", inhaler:false },
+    detail:"Final walk break. 400m brisk walk (~3 min). This is the reset before the closing 1.8 km. Drop tension, breathe deep, ready the kick. Then run hard — you have 2.2 km between you and the finish.",
+    station:null,
+  },
+  {
+    km:42.2, time:"+4:28", phase:"done", label:"FINISH — Grandmas Marathon",
+    fuel:null,
+    detail:"4:28. Negative split executed with walks built in. Canal Park, Duluth. Find Melissa. You executed a structured pace plan that absorbed 4 walk breaks and 2 rescue-inhaler stops without losing the negative split. That is how you race smart with asthma.",
+    station:null,
+  },
+];
+
 // ─── DINNER ────────────────────────────────────────────────────────────────────
 export const dinner = {
   restaurant:"Bellisio's Italian Restaurant & Wine Bar",
