@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 const sections = [
   { to:'/',                label:'Home' },
   { to:'/marathon',        label:'Race Day' },
-  { to:'/marathon-prep',   label:'Race Day + Prep' },
+  { to:'/marathon-bryan',  label:'Race Day For Bryan' },
   { to:'/dinner',          label:'Pre-Race Dinner' },
   { to:'/recovery',        label:'Recovery' },
   { to:'/run-20',          label:'Training Run' },

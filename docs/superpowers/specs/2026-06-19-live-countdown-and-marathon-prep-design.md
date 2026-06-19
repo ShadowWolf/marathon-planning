@@ -3,7 +3,7 @@
 **Date:** 2026-06-19
 **Scope:**
 - `src/components/Landing.jsx` — countdown logic + race date correction
-- `src/data/plans.js` — new `marathonWithPrepPlan` array + race date constant
+- `src/data/plans.js` — new `marathonForBryan` array + race date constant
 - `src/components/Timeline.jsx` — walk-event rendering
 - `src/components/MarathonWithPrep.jsx` — new component
 - `src/App.jsx` — new route
@@ -171,7 +171,7 @@ Open question: do we add a section card for `/marathon-prep` on the landing page
 **Marathon with Prep:**
 9. New route `/marathon-prep` resolves to `MarathonWithPrep` component.
 10. Nav contains "Race Day + Prep" entry after "Race Day".
-11. `marathonWithPrepPlan` array exported from `plans.js` with 4 walk events at km 10, 21.1, 32.2, 40.
+11. `marathonForBryan` array exported from `plans.js` with 4 walk events at km 10, 21.1, 32.2, 40.
 12. Inhaler flag set true on the km 21.1 and km 32.2 walk events.
 13. Finish time displayed: +4:28.
 14. Half split displayed: +2:17.

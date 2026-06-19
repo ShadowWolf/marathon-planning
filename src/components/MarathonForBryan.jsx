@@ -1,11 +1,11 @@
 import Nav from './Nav';
 import { PreRow, RunRow } from './Timeline';
-import { marathonWithPrepPlan, sharedPreRace, products } from '../data/plans';
+import { marathonForBryan, sharedPreRace, products } from '../data/plans';
 
-export default function MarathonWithPrep() {
-  const totalCarbs = marathonWithPrepPlan.reduce((s,r) => s+(r.carbs||0),0);
-  const openings = marathonWithPrepPlan.filter(r => r.fuel).length;
-  const walkEvents = marathonWithPrepPlan.filter(r => r.walk);
+export default function MarathonForBryan() {
+  const totalCarbs = marathonForBryan.reduce((s,r) => s+(r.carbs||0),0);
+  const openings = marathonForBryan.filter(r => r.fuel).length;
+  const walkEvents = marathonForBryan.filter(r => r.walk);
 
   return (
     <div style={{ paddingTop:52 }}>
@@ -14,8 +14,8 @@ export default function MarathonWithPrep() {
         <img src="https://images.unsplash.com/photo-1639437038514-0ad841b2f62a?w=1600&q=80" alt="Split Rock Lighthouse, Lake Superior north shore" style={{ width:'100%',height:'100%',objectFit:'cover',objectPosition:'center 30%',filter:'brightness(0.25) saturate(0.45)' }} />
         <div style={{ position:'absolute',inset:0,background:'linear-gradient(to bottom,transparent 15%,var(--black) 100%)' }} />
         <div style={{ position:'absolute',bottom:'2rem',left:'clamp(1.25rem,4vw,3rem)',right:'clamp(1.25rem,4vw,3rem)' }}>
-          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.7rem',color:'var(--accent)',letterSpacing:'0.22em',marginBottom:'0.5rem',textTransform:'uppercase' }}>Saturday June 20, 2026 · With Asthma + Walk Prep</div>
-          <h1 style={{ fontSize:'clamp(2.5rem,7vw,4.5rem)',color:'var(--text)',marginBottom:'0.4rem' }}>RACE DAY <span style={{ color:'var(--accent)' }}>+ PREP</span></h1>
+          <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.7rem',color:'var(--accent)',letterSpacing:'0.22em',marginBottom:'0.5rem',textTransform:'uppercase' }}>Saturday June 20, 2026 · With Asthma + Walking</div>
+          <h1 style={{ fontSize:'clamp(2.5rem,7vw,4.5rem)',color:'var(--text)',marginBottom:'0.4rem' }}>RACE DAY <span style={{ color:'var(--accent)' }}>(For Bryan)</span></h1>
           <p style={{ color:'var(--muted)',fontSize:'0.95rem',fontStyle:'italic' }}>Negative split · 4 walk breaks · Inhaler at half + 20mi · Target 4:28</p>
         </div>
       </div>
@@ -81,9 +81,9 @@ export default function MarathonWithPrep() {
         <div style={{ marginBottom:'2rem',padding:'1rem 1.25rem',background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:10 }}>
           <div style={{ fontFamily:"'JetBrains Mono',monospace",fontSize:'0.65rem',color:'var(--dim)',letterSpacing:'0.18em',textTransform:'uppercase',marginBottom:'0.85rem' }}>Race Day Fuel at a Glance</div>
           <div style={{ display:'flex',flexWrap:'wrap',gap:'0.4rem' }}>
-            {marathonWithPrepPlan.filter(r => r.fuel).map((r,i) => {
+            {marathonForBryan.filter(r => r.fuel).map((r,i) => {
               const p = products[r.fuel];
-              const fuelsBefore = marathonWithPrepPlan.filter(x => x.fuel).slice(0, i);
+              const fuelsBefore = marathonForBryan.filter(x => x.fuel).slice(0, i);
               const typeCount = fuelsBefore.filter(x => x.fuel === r.fuel).length + 1;
               const name = r.fuel === 'ucan' ? `UCAN+Caff #${typeCount}` : r.fuel === 'ucannc' ? `UCAN Edge #${typeCount}` : r.fuel === 'sis' ? `SiS GO #${typeCount}` : r.fuel === 'anderson' ? `Anderson's #${typeCount}` : r.fuel;
               return (
@@ -105,7 +105,7 @@ export default function MarathonWithPrep() {
         <h2 style={{ fontFamily:"'Bebas Neue',sans-serif",fontSize:'1.4rem',color:'var(--muted)',marginBottom:'1rem',letterSpacing:'0.08em' }}>THE RACE</h2>
         <div style={{ position:'relative' }}>
           <div style={{ position:'absolute',left:25,top:20,bottom:20,width:2,background:'linear-gradient(to bottom,#1a7a40,#c8a020,#c06020,#c03030)',opacity:0.3 }} />
-          {marathonWithPrepPlan.map((row,i) => <RunRow key={i} row={row} />)}
+          {marathonForBryan.map((row,i) => <RunRow key={i} row={row} />)}
         </div>
 
         <div style={{ marginTop:'2.5rem',padding:'1.25rem',background:'var(--surface2)',border:'1px solid var(--border)',borderRadius:10 }}>

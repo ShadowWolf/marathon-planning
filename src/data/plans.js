@@ -174,7 +174,7 @@ export const marathonPlan = [
   },
 ];
 
-// ─── MARATHON RACE PLAN WITH PREP (NEGATIVE SPLIT + WALK BREAKS) ───────────
+// ─── MARATHON RACE PLAN FOR BRYAN (NEGATIVE SPLIT + WALK BREAKS) ───────────
 // Same negative split shape as marathonPlan, but absorbs 4 walk breaks while
 // still finishing at 4:28. Walks: km 10 (400m), km 21.1 inhaler (~150m),
 // km 32.2 inhaler (~150m), km 40 (400m). Total walking ~1.1 km / ~9 min.
@@ -184,7 +184,7 @@ export const marathonPlan = [
 //   Zone 3 (km 28-42.2): 6:03/km (vs 6:08 standard)
 // Half split target: ~2:17 (matches standard plan).
 // Fuel: identical 7-packet schedule, same km positions as marathonPlan.
-export const marathonWithPrepPlan = [
+export const marathonForBryan = [
   {
     km:0, time:"+0:00", phase:"early", label:"Zone 1 Begins — Patience",
     fuel:null,
